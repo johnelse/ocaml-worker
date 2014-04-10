@@ -1,0 +1,8 @@
+PKG cmdliner lwt
+S lib
+S lwt
+S unix
+
+B _build/lib
+B _build/lwt
+B _build/unix

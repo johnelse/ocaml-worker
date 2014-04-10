@@ -1,0 +1,45 @@
+OASISFormat:           0.3
+Name:                  worker
+Version:               0.1.0
+Synopsis:              Child process library
+License:               ISC
+Authors:               John Else
+Copyrights:            (C) 2014 John Else
+BuildTools:            ocamlbuild
+Plugins:               META (0.3)
+
+Flag lwt
+  Description:         build the Lwt library
+  Default:             false
+
+Flag unix
+  Description:         build the Unix library
+  Default:             false
+
+Library worker
+  Path:                lib
+  BuildDepends:        cmdliner
+  Findlibname:         worker
+  ByteOpt:             -bin-annot
+  NativeOpt:           -bin-annot
+  Modules:             Worker_io, Worker
+
+Library worker_lwt
+  Build$:              flag(lwt)
+  Path:                lwt
+  BuildDepends:        lwt, lwt.unix, worker
+  Findlibname:         lwt
+  Findlibparent:       worker
+  ByteOpt:             -bin-annot
+  NativeOpt:           -bin-annot
+  Modules:             Worker_lwt
+
+Library worker_unix
+  Build$:              flag(unix)
+  Path:                unix
+  BuildDepends:        worker
+  Findlibname:         unix
+  Findlibparent:       worker
+  ByteOpt:             -bin-annot
+  NativeOpt:           -bin-annot
+  Modules:             Worker_unix

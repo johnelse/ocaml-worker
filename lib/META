@@ -1,0 +1,33 @@
+# OASIS_START
+# DO NOT EDIT (digest: a774c2aec094664274f3ed41da442d46)
+version = "0.1.0"
+description = "Child process library"
+requires = "cmdliner"
+archive(byte) = "worker.cma"
+archive(byte, plugin) = "worker.cma"
+archive(native) = "worker.cmxa"
+archive(native, plugin) = "worker.cmxs"
+exists_if = "worker.cma"
+package "unix" (
+ version = "0.1.0"
+ description = "Child process library"
+ requires = "worker"
+ archive(byte) = "worker_unix.cma"
+ archive(byte, plugin) = "worker_unix.cma"
+ archive(native) = "worker_unix.cmxa"
+ archive(native, plugin) = "worker_unix.cmxs"
+ exists_if = "worker_unix.cma"
+)
+
+package "lwt" (
+ version = "0.1.0"
+ description = "Child process library"
+ requires = "lwt lwt.unix worker"
+ archive(byte) = "worker_lwt.cma"
+ archive(byte, plugin) = "worker_lwt.cma"
+ archive(native) = "worker_lwt.cmxa"
+ archive(native, plugin) = "worker_lwt.cmxs"
+ exists_if = "worker_lwt.cma"
+)
+# OASIS_STOP
+
